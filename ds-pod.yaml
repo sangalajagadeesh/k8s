@@ -1,0 +1,19 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata: 
+  name: daemon-demo
+spec:
+  minReadySeconds: 2
+  selector:
+    matchLabels:
+      apps: ds-pod
+  template:
+    metadata:
+      name: ds 
+      labels:
+        apps: ds-pod 
+    spec:
+      containers: 
+        - name: alpine
+          image: nginx 

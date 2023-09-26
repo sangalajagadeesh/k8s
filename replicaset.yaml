@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1 
+kind: ReplicaSet 
+metadata: 
+  name: web 
+  lables:
+    env: demo 
+spec: 
+  minReadySeconds: 3
+  replicas: 5 
+  selector: 
+    matchLabels:
+      dev: jenkins
+         
+  template:      
+    metadata: 
+      labels: 
+        dev: jenkins 
+    spec: 
+      containers:
+        - name: jenkins
+          image: jenkins/jenkins 
+          ports:
+            - containerPort: 8080 
+              protocol: TCP 
